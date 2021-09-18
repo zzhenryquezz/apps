@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Embed file</title>
+</head>
+<body class="flex w-screen h-screen items-center justify-center">
+    <div class="shadow p-4 w-full max-w-xl border">
+        <div
+            class="baka-db-item"
+            data-project='.hack'
+            data-item='en-US_daitai-3-pun-de-wakaru-hack-history'
+        ></div>
+    </div>
+    <script>
+        const mainUrl = 'https://github.com/htron-dev/baka-db/tree/main/catalog'
+        const jsonUrl = 'https://raw.githubusercontent.com/htron-dev/baka-db/json/catalog/'
+
+        Array.from(document.getElementsByClassName('baka-db-item')).forEach(async (element) => {
+            element.innerHTML = 'Loading...'
+
+            const { item, project } = element.dataset
+
+            const request = await fetch(`${jsonUrl}/${project}/${item}.json`)
+
+            const content = await request.json()
+
+            element.innerHTML = `
+                <h1 class='bk-title font-bold text-xl mb-4'> ${content.title} </h1>
+                <h2 class='bk-title font-bold text-lg mb-4'> Sinopse </h2>
+                <p class='bk-sinopse mb-2 text-md'>${content.sinopse}</p>
+                <div class='mb-3'>
+                    <b>Tags:</b> ${content.tags} <br>
+                </div>
+                <a class='text-blue-500' target="_blank" href="${mainUrl}/${project}/${item}.md" >View original</a>
+            `
+        })
+
+    </script>
+</body>
+</html>
