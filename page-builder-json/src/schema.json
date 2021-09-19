@@ -1,0 +1,62 @@
+[
+    {
+        "cols": 12,
+        "class": ["bg-blue-500", "p-4", "text-white", "font-bold", "text-xl"],
+        "style": "max-height:60px",
+        "content": [
+            {
+                "component": "PText",
+                "props": {
+                    "content": "Page constructor"
+                }
+            }
+        ]
+    },
+    {
+        "cols": 2,
+        "class": ["bg-green-500", "p-8"],
+        "style": "height: calc(100% - 60px)",
+        "content": [
+            {
+                "component": "PText",
+                "props": {
+                    "content": "Actions",
+                    "class": ["font-bold", "mb-4", "text-white", "text-lg"]
+                }
+            },
+            {
+                "component": "PButton",
+                "props": {
+                    "label": "Button 1",
+                    "class": "block mb-4"
+                }
+            },
+            {
+                "component": "PButton",
+                "props": {
+                    "label": "Button 2",
+                    "class": "block mb-4"
+                }
+            },
+            {
+                "component": "PButton",
+                "props": {
+                    "label": "Button 3",
+                    "class": "block mb-4"
+                }
+            }
+        ]
+    },
+    {
+        "cols": 10,
+        "class": ["bg-purple-500", "p-8"],
+        "content": [
+            {
+                "component": "PText",
+                "props": {
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin est odio, eu porta libero aliquam in. Curabitur in fermentum nisi. Phasellus egestas consequat aliquet. Quisque accumsan orci vehicula dui molestie, ut volutpat turpis ultrices. Vestibulum mauris ligula, malesuada non orci non, sollicitudin luctus tellus. Sed pellentesque purus est, lacinia dictum libero vulputate et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus nunc lorem, finibus non porttitor quis, hendrerit sed sem."
+                }
+            }
+        ]
+    }
+]
