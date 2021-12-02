@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Todo app</title>
+</head>
+<body class="flex flex-wrap h-screen w-screen items-center justify-center">
+    <div class="todo-container p-4 w-full max-w-lg">
+        <div class="todo-form mb-4 flex justify-between shadow p-4">            
+            <input  id='add-new-input' type="text" placeholder="Todo title" class="border p-2 w-9/12 mr-2" >
+            <button id='add-new-btn' class="bg-blue-500 p-2 rounded" >Add todo</button>            
+        </div>
+
+        <div class="todo-list max-h-96 overflow-auto p-2 border"></div>
+
+    </div>
+
+    <script>
+        const btn = document.getElementById('add-new-btn');
+        const input = document.getElementById('add-new-input');
+        const list = document.querySelector('.todo-list');
+
+        async function setTodos(){
+            list.innerHTML = '';
+
+            const response = await fetch('/todos');
+            const todos = await response.json();
+
+            todos.forEach(todo => {
+                const todoElement = document.createElement('div');
+                const title = document.createElement('div');
+                const checkbox = document.createElement('input');
+
+                todoElement.id = todo.id;
+
+                todoElement.classList.add('todo', 'flex', 'items-center', 'mb-4', 'shadow', 'p-4');
+                
+                title.classList.add('font-bold', 'w-full')
+                title.innerText = todo.title;
+                
+                checkbox.type = 'checkbox';
+                checkbox.classList.add('mr-4');
+                checkbox.checked = todo.done;
+                checkbox.addEventListener('change', () => {
+                    updateTodo(todo.id, checkbox.checked);
+                })
+                
+
+                todoElement.appendChild(checkbox);
+                todoElement.appendChild(title);
+
+                list.appendChild(todoElement);
+            });
+
+        }
+
+        setTodos();
+
+        async function updateTodo(id, value){
+            const todo = { done: !!value };
+
+            await fetch(`/todos/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(todo)
+            });
+
+            await setTodos();
+        }
+
+        btn.addEventListener('click', async () => {
+            const title = input.value;
+
+            await fetch('/todos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title
+                })
+            });
+
+            await setTodos();
+        })
+    </script>
+
+
+</body>
+</html>
