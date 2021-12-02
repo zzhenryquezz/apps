@@ -1,19 +1,9 @@
 # page-builder-json
 
-## Project setup
-```
-npm install
-```
+Page builder app to create a page using just a schema.json file
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Usage
 
-### Compiles and minifies for production
-```
-npm run build
-```
+-   Install the dependencies: `npm install`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+-   Start the server `npm run serve`
