@@ -1,7 +1,7 @@
 import Route from "@ioc:Adonis/Core/Route";
 
-Route.get("/", () => {
-  return {
-    message: "Hello world",
-  };
+Route.resource("/todos", "TodosController").only(["store", "index", "update"]);
+
+Route.get("/", ({ view }) => {
+  return view.render("home");
 });
