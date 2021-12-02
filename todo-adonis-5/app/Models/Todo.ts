@@ -9,9 +9,6 @@ export default class Todo extends BaseModel {
   public title: string;
 
   @column()
-  public description: string;
-
-  @column()
   public done: boolean;
 
   @column.dateTime({ autoCreate: true })

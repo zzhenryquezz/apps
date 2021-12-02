@@ -8,7 +8,6 @@ export default class Todos extends BaseSchema {
       table.increments("id");
 
       table.string("title", 255).notNullable();
-      table.string("description", 255).nullable();
       table.boolean("done").notNullable().defaultTo(false);
 
       table.timestamp("created_at", { useTz: true });
