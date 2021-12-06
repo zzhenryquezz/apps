@@ -1,0 +1,52 @@
+<html lang="en">
+    <head>
+        <meta name="google-signin-scope" content="profile email" />
+
+        <meta
+            name="google-signin-client_id"
+            content="CLIENT_ID.apps.googleusercontent.com"
+        />
+
+        <script src="https://apis.google.com/js/platform.js" async></script>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="flex items-center justify-center h-screen w-screen">
+        <div id="app" class="flex flex-wrap justify-center">
+            <div id="profile-card"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" />
+        </div>
+
+        <script>
+            function onSignIn(googleUser) {
+                const profile = googleUser.getBasicProfile();
+
+                const card = document.getElementById("profile-card");
+                const img = document.createElement("img");
+                const title = document.createElement("h1");
+
+                card.innerHTML = "";
+
+                card.classList.add(
+                    "flex",
+                    "flex-wrap",
+                    "items-center",
+                    "justify-center",
+                    "w-full",
+                    "my-4"
+                );
+
+                img.src = profile.getImageUrl();
+                img.className = "rounded-full h-16 w-16 shadow-lg";
+
+                title.innerText = profile.getName();
+                title.className = "text-2xl font-bold text-center w-full";
+
+                card.appendChild(img);
+                card.appendChild(title);
+            }
+        </script>
+    </body>
+</html>
