@@ -1,5 +1,11 @@
-node_modules
+# general
 dist
 .cache
 .temp
+
+# node
+node_modules
+
+# python
 .env
+__pycache__
